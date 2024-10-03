@@ -21,7 +21,6 @@ class Repository {
     }
 
     findAll(params){
-        
         return this.model.findAll({...params})
     }
     
@@ -37,10 +36,11 @@ class Repository {
     }
 
     paginate(param){
-        const {name, page, limit, field, includes} = param
+        const {name, page, limit, field, _include, _order} = param
         const curpage = ( page - 1 ) * limit
         const params = name ? { [field]: {[Op.like]: `%${name}%`} } : {}
-        const include = includes ? includes : []
+        const include = _include ? _include : []
+        const order = _order ? _order : [field]
 
         return this.model.findAndCountAll({
             where: {
@@ -49,7 +49,7 @@ class Repository {
             include,
             limit,
             offset: curpage,
-            order: [field]
+            order
         })
     }
 }

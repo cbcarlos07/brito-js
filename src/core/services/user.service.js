@@ -9,6 +9,14 @@ class UserService extends BaseService{
     constructor(){
         super( UserRepository )
     }
+   
+    paginate(params){        
+        params = {
+            ...params, 
+            _include: [ {association: '_profile'} ]
+        }
+        return this.pagination(params)
+    }
 
     authPanel ( data ) {
         return new Promise(async(resolve, reject)=>{

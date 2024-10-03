@@ -5,6 +5,14 @@ class ProfileService extends BaseService{
     constructor(){
         super( ProfileRepository )
     }
+    
+    paginate(params){        
+        params = {
+            ...params, 
+            _include: [ {association: '_user'} ]
+        }
+        return this.pagination(params)
+    }
 
 }
 

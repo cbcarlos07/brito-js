@@ -1,5 +1,5 @@
 const requireDir = require('require-dir');
-const path = require('path')
+const path = require('path');
 
 const rotas = requireDir('./routes', {
     filter: fullPath => {
@@ -16,27 +16,14 @@ const PREFIXv1 = `${API}`
 
 const fnRouterConfig = deps => {
     const {app} = deps
-    
+    //app.use(PREFIXv1, profileRouter.init())
     Object.values(rotas)
         .map( (r, i) => {
-            const routePath = Boolean( r.router ) ? r.router.stack[0].route.path  : r.stack[0].route.path
-            if( routePath == '/' ){
-                const route = Boolean( r.router ) ? r.router  : r
-                app.use( `/`, route )
+            if( r.prefix === '/' )
+                app.use('/', r.init())
+            else{
+                app.use(`${PREFIXv1}`, r.init())
             }
-            else 
-                {
-                    const route = Boolean( r.router ) ? r.router  : r
-                    if( route ){
-                        // if( Boolean( r.realtime ) ){                            
-                        //     r.realtime( io )
-                        // }
-                        app.use(`${PREFIXv1}`, route)
-                    }else{                        
-                        app.use(`${PREFIXv1}`, route)
-                    }
-                }
-            
           })
    
 }

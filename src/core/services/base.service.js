@@ -14,7 +14,7 @@ class BaseService {
     }
 
     delete(id){
-        return this.repository.destroy({where: {id}})
+        return this.repository.delete( id )
     }
 
     findById(id){
@@ -22,7 +22,7 @@ class BaseService {
     }
 
     findAll(params){
-        return this.repository.findAll({...params})
+        return this.repository.findAll(params)
     }
     
     findOne(data){
@@ -33,7 +33,7 @@ class BaseService {
         return this.repository.getTotal(params)
     }
 
-    paginate(params){
+    pagination(params){
         return new Promise(async(resolve, reject)=>{
             try {
                 const total = await this.getTotal()
@@ -50,6 +50,10 @@ class BaseService {
                 reject(error)
             }
         })
+    }
+
+    paginate(params){
+        return this.pagination(params)
     }
 }
 

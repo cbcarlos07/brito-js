@@ -1,4 +1,10 @@
 const axios = require('axios')
+const path = require('path')
+const fs = require('fs')
+
+const PUBLIC = 'public'
+const IMAGE = 'image'
+const PNG = 'png'
 module.exports = {
       /**
          * 
@@ -7,23 +13,22 @@ module.exports = {
          * @param {*} local 
          * @returns 
          */
-      b64ToFile(base64String, ext, local = IMAGE){
-        return new Promise((resolve, reject)=>{
-            const nomeArquivo = `${new Date().getTime()}.${ext}`
+      b64ToFile(base64String, cb){
+            const nomeArquivo = `${new Date().getTime()}.${PNG}`
             const buffer = Buffer.from(base64String, 'base64');
           
-            const file = path.resolve( PUBLIC, local, nomeArquivo)
+            const file = path.resolve( PUBLIC, IMAGE, nomeArquivo)
             
             fs.writeFile( file , buffer, (err) => {
               if (err) {
-                reject({error: 'Erro ao criar o arquivo', err, status: false})
+                cb(null, {error: 'Erro ao criar o arquivo', err, status: false})
                 
               } else {
-                resolve(nomeArquivo)
+                cb(nomeArquivo)
               }
 
         })
-      });
+      
     },
 
     getExtension(nomeArquivo){
@@ -59,5 +64,15 @@ module.exports = {
             null,
             { params: dados }
           );
+    },
+
+    removeFile: (filePath, cb) => {
+      const file = path.resolve( PUBLIC, IMAGE, filePath)
+      fs.unlink(file, (erro) => {
+        if (erro) {
+            cb(false, erro);
+        }
+        cb(true)
+    });
     }
 }

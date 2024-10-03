@@ -4,7 +4,7 @@ const helmet = require('helmet')
 const socketIO = require('socket.io');
 const app = express()
 const cors = require('cors');
-const initRoute = require('../api/routes/init.route')
+const initRoute = require('../api/routes/routes/init.route')
 const fnRouterConfig = require('../api/routes/routes')
 
 const jwt = require('../api/middlewares/jwt.middleware')
@@ -48,8 +48,10 @@ app.use(express.urlencoded({
   extended: true
 }));
 
-app.use(function (req, res, next) {
-  next()
+app.use((err, req, res, next)  => {
+  console.log('app use', err);
+  
+  next({...err, status: res.status, message: err.message})
 })
 
 require('../config/database/init')
@@ -65,7 +67,6 @@ const exclusions = [
     '/refresh-token'
   ]
 app.use(jwt({exclusions}))
-app.use('/',initRoute )
 fnRouterConfig({app})
 
 //realtime(io)

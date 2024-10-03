@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-class Profile extends Sequelize.Model {
+class Company extends Sequelize.Model {
   static init(sequelize) {
     super.init(
       {
@@ -15,7 +15,7 @@ class Profile extends Sequelize.Model {
       },
       {
         sequelize,			
-        tableName: 'tb_profile',
+        tableName: 'tb_company',
         timestamps: true,
         underscored: true
       }
@@ -25,16 +25,15 @@ class Profile extends Sequelize.Model {
   }
 
   static associate(models){
-    const { User } = models
-    this.hasMany( User, {
+    const { Bus } = models
+    this.hasMany( Bus, {
       foreignKey: {
-          name:  'profileId'
+          name:  'companyId'
       },
-      as: '_user'
+      as: '_bus'
     }) 
   }
 
- 
 }
 
-module.exports = Profile
+module.exports = Company
