@@ -13,7 +13,7 @@ Para criar um modulo novo no projeto digite o comando
 
 O engine irá criar:
 
-1. Um migration, que nesse caso é no sequelize
+1. Um migration, que nesse caso é no sequelize no diretório `src/config/database/migrations`
 2. Um model a partir do comando `meu-modulo` que você informou
 3. Um repository baseado no model criado no diretório `src/core/repositories`
 4. Um service no diretório `src/core/services`
@@ -21,6 +21,8 @@ O engine irá criar:
 6. Um arquivo de rotas no diretório `src/api/routes/routes`
 
 Vale lembrar que não é preciso chamar as rotas configuração inicial da api (no diretório `src/server/index.js`) pois o engine faz isso automaticamente
+
+Então, você precisará apenas configurar os campos gerado na migration e na classe Model gerada
 
 Fique à vontade para sugerir mais features para esse projeto
 
