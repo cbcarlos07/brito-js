@@ -35,6 +35,7 @@ No post você envia os dados via json no corpo da requisição
     {
         atributo: 'Valor'
     }
+-  
 
     http://localhost:3210/api/seu-endpoint/1 -> put / update
     http://localhost:3210/api/seu-endpoint/1 -> delete / delete
