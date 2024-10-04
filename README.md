@@ -11,7 +11,7 @@ Para criar um modulo novo no projeto digite o comando
 
     npm run new-module meu-modulo
 
-O engine irá:
+O engine irá criar:
 
 1. Um migration, que nesse caso é no sequelize
 2. Um model a partir do comando `meu-modulo` que você informou
