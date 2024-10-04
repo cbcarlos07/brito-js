@@ -11,7 +11,7 @@
     "db:drop": "npx sequelize db:drop",
     "start:db": "npm run db:create && npm run migrate && npx sequelize-cli db:seed:all",
     "restart:db": "npm run db:drop && npm run start:db",
-    "module": "node src/core/config/configure.js"
+    "new-module": "node src/core/config/configure.js"
   },
   "keywords": [],
   "author": "",

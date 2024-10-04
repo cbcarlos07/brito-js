@@ -3,7 +3,7 @@ const BaseRouter = require('../base.router')
 
 
 class {{className}}Router extends BaseRouter{
-    prefix = '/bus'
+    prefix = '/{{route}}'
     constructor(controller){
         super(controller)
     }

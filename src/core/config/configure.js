@@ -87,7 +87,7 @@ const init = arg => {
         
         const originRouter = path.join(__dirname, 'router');
         const destinRouter = path.join('src','api','routes','routes', `${arg}.route.js`);
-        copiarERenomearArquivo(originRouter, destinRouter, {import: arg, className: newName});
+        copiarERenomearArquivo(originRouter, destinRouter, {import: arg, className: newName, route: arg});
         console.log('Routa criado com sucesso');
     })
     
