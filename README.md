@@ -48,7 +48,7 @@ No paginate você pode enviar no corpo o que você pretende pagina
         "page": 1, //página atual
         "limit": 5, // quantos por pagina
         "field": "name", //campo a ordernar
-        "name": "car" // valor a pequisar
+        "name": "car" // valor a pequisar, lembrando que voce pode alterar o name para o campo que voce queira filtrar
     }
     
 
