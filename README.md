@@ -22,6 +22,36 @@ O engine irá criar:
 
 Vale lembrar que não é preciso chamar as rotas configuração inicial da api (no diretório `src/server/index.js`) pois o engine faz isso automaticamente
 
+Vale lembrar também que as rotas já estão com as rotas iniciais
+
+    create, update, findId, findAll, delete e paginate
+
+Bastando chamar da seguinte forma:
+
+    http://localhost:3210/api/seu-endpoint -> post / create
+
+No post você envia os dados via json no corpo da requisição
+
+    {
+        atributo: 'Valor'
+    }
+
+    http://localhost:3210/api/seu-endpoint/1 -> put / update
+    http://localhost:3210/api/seu-endpoint/1 -> delete / delete
+    http://localhost:3210/api/seu-endpoint/1 -> get / findId
+    http://localhost:3210/api/seu-endpoint -> patch / findAll
+    http://localhost:3210/api/seu-endpoint/paginate -> patch / paginate
+
+No paginate você pode enviar no corpo o que você pretende pagina
+
+    {
+        "page": 1, //página atual
+        "limit": 5, // quantos por pagina
+        "field": "name", //campo a ordernar
+        "name": "car" // valor a pequisar
+    }
+    
+
 Então, você precisará apenas configurar os campos gerado na migration e na classe Model gerada
 
 Fique à vontade para sugerir mais features para esse projeto
