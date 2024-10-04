@@ -1,0 +1,26 @@
+const Sequelize = require('sequelize');
+
+class {{className}}Model extends Sequelize.Model {
+  static init(sequelize) {
+    super.init(
+      {
+        
+      },
+      {
+        sequelize,			
+        tableName: 'tb_{{table}}',
+        timestamps: true,
+        underscored: true
+      }
+    );
+    
+    return this;
+  }
+
+  static associate(models){
+    //const {  } = models
+  }
+
+}
+
+module.exports = {{className}}Model

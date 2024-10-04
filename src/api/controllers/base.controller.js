@@ -9,15 +9,16 @@ class BaseController {
         this.StatusCodes = StatusCodes
     }
 
-    create(req, res, next){
-        return this.service
-                   .create(req.body)
-                   .then(rsp => {
-                        res.status(this.StatusCodes.OK).json({data: rsp, msg: this.messages.created})
-                    })
-                    .catch(err => {
-                        next({...err, status: 500, message: err.message})
-                    })
+     create(req, res, next){
+          const { companyId } = req.decoded
+          this.service
+               .create({...req.body, companyId})
+               .then(rsp => {
+                    res.status(this.StatusCodes.OK).json({data: rsp, msg: this.messages.created})
+               })
+               .catch(err => {
+                    next({...err, status: 500, message: err.message})
+               })
     }
 
     update(req, res, next){
@@ -27,7 +28,7 @@ class BaseController {
                 res.status(this.StatusCodes.OK).json({msg: this.messages.updated})
            })
            .catch(err => {
-                next({...err, status: 500})
+                next({...err, message: err.message, status: 500})
            })
     }
 
@@ -84,8 +85,9 @@ class BaseController {
     //            })
     // }
 
-    paginate(req, res, next){
-        this.service.paginate(req.body)
+     paginate(req, res, next){
+          const { companyId } = req.decoded
+          this.service.paginate({...req.body, companyId: companyId > 0 ? companyId : undefined})
             .then(rsp => {
                 res.status(this.StatusCodes.OK).json(rsp)
             })

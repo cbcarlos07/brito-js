@@ -16,7 +16,7 @@ const PREFIXv1 = `${API}`
 
 const fnRouterConfig = deps => {
     const {app} = deps
-    //app.use(PREFIXv1, profileRouter.init())
+    
     Object.values(rotas)
         .map( (r, i) => {
             if( r.prefix === '/' )

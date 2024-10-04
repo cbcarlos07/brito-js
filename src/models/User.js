@@ -34,6 +34,10 @@ class User extends Sequelize.Model {
             onDelete: 'cascade',
             onUpdate: 'cascade'
 		},
+		companyId: {
+			type: Sequelize.INTEGER,
+			allowNull: true
+		}
       },
       {
         sequelize,			
@@ -59,13 +63,19 @@ class User extends Sequelize.Model {
   }
 
   static associate(models){
-    const { Profile } = models
+    const { Profile, Company } = models
 
     this.belongsTo( Profile, {
         foreignKey: {
             name:  'profileId'
         },
         as: '_profile'
+    }) 
+    this.belongsTo( Company, {
+        foreignKey: {
+            name:  'companyId'
+        },
+        as: '_company'
     }) 
   }
 }

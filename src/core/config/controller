@@ -1,0 +1,10 @@
+const service = require("../../core/services/{{className}}.service");
+const BaseController = require("./base.controller");
+
+class {{className}}Controller extends BaseController{
+    constructor(){
+        super( service )
+    }
+}
+
+module.exports = new {{className}}Controller

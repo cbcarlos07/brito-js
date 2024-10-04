@@ -1,0 +1,11 @@
+const repository = require("../repositories/{{className}}Repository");
+const BaseService = require("./base.service");
+
+class {{className}}Service extends BaseService{
+    constructor(repository){
+        super( repository )
+    }
+
+}
+
+module.exports = new {{className}}Service(repository)

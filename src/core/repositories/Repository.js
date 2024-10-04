@@ -25,9 +25,9 @@ class Repository {
     }
     
     findOne(data){
-        const {params, includes} = data
+        const {params, _include} = data
         const where = params ? params : {}
-        const include = includes ? includes : null
+        const include = _include ? _include : null
         return this.model.findOne({where, include})
     }
 
@@ -36,12 +36,13 @@ class Repository {
     }
 
     paginate(param){
-        const {name, page, limit, field, _include, _order} = param
+        const {name, page, limit, field, _include, _order, companyId} = param
         const curpage = ( page - 1 ) * limit
-        const params = name ? { [field]: {[Op.like]: `%${name}%`} } : {}
+        const _params = name ? { [field]: {[Op.like]: `%${name}%`} } : {}
         const include = _include ? _include : []
         const order = _order ? _order : [field]
-
+        
+        const params = companyId ? {..._params, companyId} : _params
         return this.model.findAndCountAll({
             where: {
                 ...params

@@ -1,8 +1,30 @@
-# Viagem Eu Vou
+# Framework Brito.JS
 
+## Descrição
 
-## Execução do projeto
+Crie módulos com apenas um comando
 
+1. Faça o clone ou fork deste projeto
+2. Instele as dependências
+
+Para criar um modulo novo no projeto digite o comando
+
+    npm run new-module meu-modulo
+
+O engine irá:
+
+1. Um migration, que nesse caso é no sequelize
+2. Um model a partir do comando `meu-modulo` que você informou
+3. Um repository baseado no model criado no diretório `src/core/repositories`
+4. Um service no diretório `src/core/services`
+5. Um controller no diretório `src/api/controllers`
+6. Um arquivo de rotas no diretório `src/api/routes/routes`
+
+Vale lembrar que não é preciso chamar as rotas configuração inicial da api (no diretório `src/server/index.js`) pois o engine faz isso automaticamente
+
+Fique à vontade para sugerir mais features para esse projeto
+
+## Execução do projeto em sequelize
 
 
 Para rodar o projeto bastar o comando:
