@@ -59,37 +59,45 @@ const toCamelCase = (str) => {
 
 const init = arg => {
     
-    execCommand(arg, () => {
+    
 
-        const newName = toCamelCase(arg)
-        
-        const originModel = path.join(__dirname, 'model');
-        const destinModel = path.join('src','models', `${newName}.js`);
-        copiarERenomearArquivo(originModel, destinModel, {className: newName, table: arg});
-        console.log('Model com sucesso!');
-        
-        const originRepository = path.join(__dirname, 'repository');
-        const repositoryNameFile = `${newName}Repository`
-        const destinRepository = path.join('src','core','repositories', `${repositoryNameFile}.js`);
-        copiarERenomearArquivo(originRepository, destinRepository, {className: newName});
-        console.log('Repository criado com sucesso!');
-        
-        const originService = path.join(__dirname, 'service');
-        const serviceNameFile = `${newName}.service.js`
-        const destinService = path.join('src','core','services', `${serviceNameFile}`);
-        copiarERenomearArquivo(originService, destinService, {className: newName});
-        console.log('Service criado com sucesso!');
-        
-        const originController = path.join(__dirname, 'controller');
-        const destinController = path.join('src','api','controllers', `${arg}.controller.js`);
-        copiarERenomearArquivo(originController, destinController, {className: newName});
-        console.log('Controller criado com sucesso!');
-        
-        const originRouter = path.join(__dirname, 'router');
-        const destinRouter = path.join('src','api','routes','routes', `${arg}.route.js`);
-        copiarERenomearArquivo(originRouter, destinRouter, {import: arg, className: newName, route: arg});
-        console.log('Routa criado com sucesso');
-    })
+    const newName = toCamelCase(arg)
+
+    const origiMigrate = path.join(__dirname, 'migrate');
+    const date = new Date
+    const tableName = `${arg.replace(/-/g, '_')}.js`
+    const nameFileMigrate = `${format(date, 'yyyyMMddHHmmss')}-${arg}.js`
+    const destiMigrate = path.join('src','config', 'database','migrations',nameFileMigrate);
+    copiarERenomearArquivo(origiMigrate, destiMigrate, {className: newName, table: tableName});
+    console.log('Migrate criado com sucesso!');
+    
+    const originModel = path.join(__dirname, 'model');
+    const destinModel = path.join('src','models', `${newName}.js`);
+    copiarERenomearArquivo(originModel, destinModel, {className: newName, table: arg});
+    console.log('Model criado com sucesso!');
+    
+    const originRepository = path.join(__dirname, 'repository');
+    const repositoryNameFile = `${newName}Repository`
+    const destinRepository = path.join('src','core','repositories', `${repositoryNameFile}.js`);
+    copiarERenomearArquivo(originRepository, destinRepository, {className: newName});
+    console.log('Repository criado com sucesso!');
+    
+    const originService = path.join(__dirname, 'service');
+    const serviceNameFile = `${newName}.service.js`
+    const destinService = path.join('src','core','services', `${serviceNameFile}`);
+    copiarERenomearArquivo(originService, destinService, {className: newName});
+    console.log('Service criado com sucesso!');
+    
+    const originController = path.join(__dirname, 'controller');
+    const destinController = path.join('src','api','controllers', `${arg}.controller.js`);
+    copiarERenomearArquivo(originController, destinController, {className: newName});
+    console.log('Controller criado com sucesso!');
+    
+    const originRouter = path.join(__dirname, 'router');
+    const destinRouter = path.join('src','api','routes','routes', `${arg}.route.js`);
+    copiarERenomearArquivo(originRouter, destinRouter, {import: arg, className: newName, route: arg});
+    console.log('Routa criado com sucesso');
+    
     
 }
 
