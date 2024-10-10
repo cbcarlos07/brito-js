@@ -65,7 +65,7 @@ const init = arg => {
 
     const origiMigrate = path.join(__dirname, 'migrate');
     const date = new Date
-    const tableName = `${arg.replace(/-/g, '_')}.js`
+    const tableName = `${arg.replace(/-/g, '_')}`
     const nameFileMigrate = `${format(date, 'yyyyMMddHHmmss')}-${arg}.js`
     const destiMigrate = path.join('src','config', 'database','migrations',nameFileMigrate);
     copiarERenomearArquivo(origiMigrate, destiMigrate, {className: newName, table: tableName});
@@ -73,7 +73,7 @@ const init = arg => {
     
     const originModel = path.join(__dirname, 'model');
     const destinModel = path.join('src','models', `${newName}.js`);
-    copiarERenomearArquivo(originModel, destinModel, {className: newName, table: arg});
+    copiarERenomearArquivo(originModel, destinModel, {className: newName, table: tableName});
     console.log('Model criado com sucesso!');
     
     const originRepository = path.join(__dirname, 'repository');
