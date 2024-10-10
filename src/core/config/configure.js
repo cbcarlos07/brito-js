@@ -68,7 +68,7 @@ const init = arg => {
     const tableName = `${arg.replace(/-/g, '_')}`
     const nameFileMigrate = `${format(date, 'yyyyMMddHHmmss')}-${arg}.js`
     const destiMigrate = path.join('src','config', 'database','migrations',nameFileMigrate);
-    copiarERenomearArquivo(origiMigrate, destiMigrate, {className: newName, table: tableName});
+    copiarERenomearArquivo(origiMigrate, destiMigrate, {table: tableName});
     console.log('Migrate criado com sucesso!');
     
     const originModel = path.join(__dirname, 'model');
