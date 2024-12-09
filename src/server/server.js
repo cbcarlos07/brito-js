@@ -4,7 +4,6 @@ const helmet = require('helmet')
 const socketIO = require('socket.io');
 const app = express()
 const cors = require('cors');
-const initRoute = require('../api/routes/routes/init.route')
 const fnRouterConfig = require('../api/routes/routes')
 
 const jwt = require('../api/middlewares/jwt.middleware')
@@ -59,14 +58,8 @@ app.use(express.static('public'))
 const exclusions = [
     '/',
     '/auth',
-    '/socket.io',
-    '/token',
-    '/image',
-    '/register',
-    '/auth-panel',
-    '/refresh-token'
   ]
-app.use(jwt({exclusions}))
+//app.use(jwt({exclusions}))
 fnRouterConfig({app})
 
 //realtime(io)

@@ -1,21 +1,12 @@
 
 require('dotenv').config()
-
+const {DB_USER, DB_PROTOCOL, DB_PORT, DB_SERVICE, DB_PWD, DB_HOST } = process.env
 module.exports = {
-    dialect: 'mysql',
-    host: process.env.DB_HOST,
-    username: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE,
-    port: process.env.DB_PORT,
-    define: {
-        timestamps: false
-    },
-    logging: false,
-    pool: {
-        max: process.env.DB_CONNECTIONS,
-        min: 0,
-        acquire: 30000,
-        idle: 10000
-      }
+    dialect: 'oracle',
+    host: DB_HOST,
+    username: DB_USER,
+    password: DB_PWD,
+    dialectOptions: {
+        connectString: `(DESCRIPTION=(ADDRESS=(PROTOCOL=${DB_PROTOCOL})(HOST=${DB_HOST})(PORT=${DB_PORT}))(CONNECT_DATA=(SERVICE_NAME=${DB_SERVICE})))`
+    }
 }

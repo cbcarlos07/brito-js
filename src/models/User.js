@@ -5,57 +5,20 @@ class User extends Sequelize.Model {
     super.init(
       {
         name: {
-			type: Sequelize.STRING,
-			allowNull: false
-		},
-		username: {
-			type: Sequelize.STRING,
-			allowNull: false
-		},
-		email: {
-			type: Sequelize.STRING,
-			allowNull: false
-		},
-		password: {
-			type: Sequelize.STRING,
-			allowNull: false
-		},
-		refreshToken: {
-			type: Sequelize.STRING,
-			allowNull: true
-		},
-		profileId: {
-			type: Sequelize.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'tb_profile',
-                key: 'id'
-            },
-            onDelete: 'cascade',
-            onUpdate: 'cascade'
-		},
-		companyId: {
-			type: Sequelize.INTEGER,
-			allowNull: true
-		}
+					type: Sequelize.STRING,
+					allowNull: false
+				},
+				login: {
+					type: Sequelize.STRING,
+					allowNull: false
+				},
       },
       {
         sequelize,			
         tableName: 'tb_user',
+        schema:'dbaadv',
         timestamps: true,
-        underscored: true,
-		defaultScope: {
-			attributes: {
-			  exclude: ['password']
-			},
-		},
-		scopes: {
-			withPassword: {
-				attributes: {
-				include: ['password']
-				}
-			}
-		}
+        underscored: true
       }
     );
     
@@ -63,21 +26,9 @@ class User extends Sequelize.Model {
   }
 
   static associate(models){
-    const { Profile, Company } = models
-
-    this.belongsTo( Profile, {
-        foreignKey: {
-            name:  'profileId'
-        },
-        as: '_profile'
-    }) 
-    this.belongsTo( Company, {
-        foreignKey: {
-            name:  'companyId'
-        },
-        as: '_company'
-    }) 
+    //const {  } = models
   }
+
 }
 
 module.exports = User

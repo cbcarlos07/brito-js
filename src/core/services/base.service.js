@@ -33,10 +33,10 @@ class BaseService {
         return this.repository.getTotal(params)
     }
 
-    pagination(params){
+    pagination(params, paramsTotal = null){
         return new Promise(async(resolve, reject)=>{
             try {
-                const total = await this.getTotal()
+                const total = await this.getTotal(paramsTotal)
                 const result = await this.repository.paginate(params)
                 const {page, limit} = params
                 resolve({

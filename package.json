@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "API do projeto",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src",
@@ -19,6 +19,8 @@
   "dependencies": {
     "axios": "^1.7.7",
     "cors": "^2.8.5",
+    "cu8-sequelize-oracle": "^1.0.5",
+    "date-fns": "^4.1.0",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
     "handlebars": "^4.7.8",
@@ -27,6 +29,7 @@
     "jsonwebtoken": "^9.0.2",
     "md5": "^2.3.0",
     "mysql2": "^3.11.3",
+    "oracledb": "^6.7.0",
     "path": "^0.12.7",
     "require-dir": "^1.2.0",
     "sequelize": "^6.35.2",

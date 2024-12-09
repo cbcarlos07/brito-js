@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const handlebars = require('handlebars')
 const { exec } = require('child_process');
-
+const { format } = require('date-fns')
 // Função para copiar e renomear o arquivo
 const copiarERenomearArquivo = (origem, destino, dados) =>{
     // Copiar o arquivo

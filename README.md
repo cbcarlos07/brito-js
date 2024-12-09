@@ -109,7 +109,34 @@ npx sequelize-cli db:seed --seed 20231207165843-insert_article.js
 
 npx sequelize-cli db:seed:all
 
+## Oracle
 
-## Recaptcha
+Para conexão com Oracle instale a biblioteca `cu8-sequelize-oracle`
 
-https://www.google.com/recaptcha/admin/site/709868878
+    npm i cu8-sequelize-oracle
+
+Para testes com oracle local
+
+services:
+  oracle:
+    image: oracleinanutshell/oracle-xe-11g
+    container_name: oracle
+    ports:
+      - "1521:1521"
+      - "8080:8080"
+    environment:
+      - ORACLE_ALLOW_REMOTE=true
+      - ORACLE_PASSWORD=SenhaForte123
+    restart: unless-stopped
+
+    Host: localhost
+    Porta: 1521
+    Usuário: system
+    Senha: (a senha que você definiu)
+    Opção 2: Construir a Imagem do Oracle Database
+    Se você precisar de uma versão mais recente do Oracle Database (como 19c ou 21c), você pode construir a imagem a partir do repositório oficial. Aqui estão os passos:
+
+    Clone o repositório:
+
+    git clone https://github.com/oracle/docker-images.git
+    cd doc
