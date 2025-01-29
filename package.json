@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Mini framework",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src",
@@ -22,7 +22,7 @@
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
     "handlebars": "^4.7.8",
-    "helmet": "^8.0.0",
+    "helmet": "4.6.0",
     "http-status-codes": "^2.3.0",
     "jsonwebtoken": "^9.0.2",
     "md5": "^2.3.0",
