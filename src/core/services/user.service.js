@@ -1,11 +1,11 @@
 const UserRepository = require("../repositories/UserRepository");
 const BaseService = require("./base.service");
-const {DEFAULT_PWD, JWT_SECRET, RECAPCTHA_FAKE, SECRET_KEY} = process.env
+const {DEFAULT_PWD, JWT_SECRET, RECAPCTHA_FAKE} = process.env
 const {Op} = require('sequelize')
 const md5 = require('md5')
 const jwt = require('jsonwebtoken');
-const { validarGoogleReCaptcha, checkCloudflareRecaptcha } = require("../utils/utils");
-const { default: axios } = require("axios");
+const {  checkCloudflareRecaptcha } = require("../utils/utils");
+
 
 class UserService extends BaseService{
     constructor(repository){
@@ -13,18 +13,15 @@ class UserService extends BaseService{
     }
 
     create(data){
-        data.value.password = md5( data.value.password )
-        return super.create({value: data.value})
+        data.password = md5( data.password )
+        return super.create(data)
     }
 
     
     paginate(params){
-        const company = params.decoded.companyId > 0 ? {companyId: params.decoded.companyId} : {}
+        
         const _params = {
-            ...params.value, 
-            additionalParam: {
-                ...company,
-            },
+            ...params.value,
             _include: [ {association: '_profile'}, {association: '_company'} ]
         }
         return this.pagination(_params)

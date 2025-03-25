@@ -63,7 +63,7 @@ class User extends Sequelize.Model {
   }
 
   static associate(models){
-    const { Profile, Company } = models
+    const { Profile } = models
 
     this.belongsTo( Profile, {
         foreignKey: {
@@ -71,12 +71,7 @@ class User extends Sequelize.Model {
         },
         as: '_profile'
     }) 
-    this.belongsTo( Company, {
-        foreignKey: {
-            name:  'companyId'
-        },
-        as: '_company'
-    }) 
+   
   }
 }
 

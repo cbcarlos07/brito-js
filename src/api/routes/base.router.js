@@ -1,10 +1,10 @@
 const router = require('express').Router()
 class BaseRouter {
     
-    prefix = '/'
-    router = router
     constructor(_controller){
         this.controller = _controller
+        this.prefix = '/'
+        this.router = router
     } 
     
     init() {

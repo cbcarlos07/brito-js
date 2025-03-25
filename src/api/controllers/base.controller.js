@@ -10,9 +10,8 @@ class BaseController {
     }
 
      create(req, res, next){
-          const { companyId } = req.decoded
           this.service
-               .create({...req.body, companyId})
+               .create(req.body)
                .then(rsp => {
                     res.status(this.StatusCodes.OK).json({data: rsp, msg: this.messages.created})
                })
@@ -86,8 +85,8 @@ class BaseController {
     // }
 
      paginate(req, res, next){
-          const { companyId } = req.decoded
-          this.service.paginate({...req.body, companyId: companyId > 0 ? companyId : undefined})
+          
+          this.service.paginate(req.body)
             .then(rsp => {
                 res.status(this.StatusCodes.OK).json(rsp)
             })

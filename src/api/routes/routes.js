@@ -19,12 +19,8 @@ const fnRouterConfig = deps => {
     
     Object.values(rotas)
         .map( (r, i) => {
-            if( r.prefix === '/' )
-                app.use('/', r.init())
-            else{
-                app.use(`${PREFIXv1}`, r.init())
-            }
-          })
+            app.use(`${PREFIXv1}`, r.init())
+        })
    
 }
 

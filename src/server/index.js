@@ -1,7 +1,6 @@
 
 const express = require('express')
 const helmet = require('helmet')
-const socketIO = require('socket.io');
 const app = express()
 const cors = require('cors');
 const fnRouterConfig = require('../api/routes/routes')
@@ -53,7 +52,7 @@ app.use((err, req, res, next)  => {
   next({...err, status: res.status, message: err.message})
 })
 
-//require('../config/database/init')
+require('../config/database/init')
 app.use(express.static('public'))
 const exclusions = [
     '/',
